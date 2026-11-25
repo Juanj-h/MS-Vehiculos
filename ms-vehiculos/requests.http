@@ -1,0 +1,36 @@
+### Tipos de vehículo (precargados: CARRO, MOTOCICLETA, BICICLETA, OTRO)
+GET http://localhost:3002/api/tipos-vehiculo
+
+### Registrar un tipo nuevo del conjunto
+POST http://localhost:3002/api/tipos-vehiculo
+Content-Type: application/json
+x-cuenta-id: admin-1
+
+{ "nombre": "Patineta eléctrica", "requierePlaca": false }
+
+### Registrar vehículo (reemplaza UUID_TIPO_CARRO y UUID_UNIDAD)
+POST http://localhost:3002/api/vehiculos
+Content-Type: application/json
+x-cuenta-id: admin-1
+
+{ "tipoId": "UUID_TIPO_CARRO", "placa": "abc 123", "unidadId": "UUID_UNIDAD" }
+
+### Ingreso (guarda)
+POST http://localhost:3002/api/eventos/ingreso
+Content-Type: application/json
+x-cuenta-id: guarda-7
+
+{ "vehiculoId": "UUID_VEHICULO", "autorizacionId": "UUID_AUTORIZACION" }
+
+### Salida (cierra el ingreso abierto)
+POST http://localhost:3002/api/eventos/salida
+Content-Type: application/json
+x-cuenta-id: guarda-7
+
+{ "vehiculoId": "UUID_VEHICULO" }
+
+### Vehículos dentro del conjunto
+GET http://localhost:3002/api/eventos/abiertos
+
+### Historial de un vehículo
+GET http://localhost:3002/api/vehiculos/UUID_VEHICULO/eventos
